@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 //TODO sound design
 //TODO animate movement
 //TODO option to select which three kittens to turn into cats
-//TODO move image with drag
+//TODO make felines images look better
 
 public class Main extends Application {
     @Override

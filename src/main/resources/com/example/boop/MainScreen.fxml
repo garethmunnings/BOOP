@@ -42,10 +42,18 @@
     </center>
 
     <left>
-        <GridPane alignment = "CENTER" fx:id = "player1GridPane"></GridPane>
+        <GridPane alignment = "CENTER" fx:id = "player1GridPane">
+            <BorderPane.margin>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </BorderPane.margin>
+        </GridPane>
     </left>
     <right>
-        <GridPane alignment = "CENTER" fx:id = "player2GridPane"></GridPane>
+        <GridPane alignment = "CENTER" fx:id = "player2GridPane">
+            <BorderPane.margin>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </BorderPane.margin>
+        </GridPane>
     </right>
 
 </BorderPane>

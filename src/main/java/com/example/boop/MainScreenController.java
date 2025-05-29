@@ -2,15 +2,18 @@ package com.example.boop;
 
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -40,7 +43,6 @@ public class MainScreenController {
         drawPool(1);
         drawPool(2);
     }
-
     private void drawPool(int playernum){
 
         Player player;
@@ -60,10 +62,21 @@ public class MainScreenController {
 
             ImageView iv = kitten.getIV();
             pane.getChildren().add(iv);
-            if(playernum == 1)
-                player1GridPane.add(pane, 0, i);
-            else
-                player2GridPane.add(pane, 0, i);
+            iv.setLayoutX(10);
+            iv.setLayoutY(10);
+
+            if(i < 4) {
+                if (playernum == 1)
+                    player1GridPane.add(pane, 0, i);
+                else
+                    player2GridPane.add(pane, 0, i);
+            }
+            else {
+                if (playernum == 1)
+                    player1GridPane.add(pane, 1, i - 4);
+                else
+                    player2GridPane.add(pane, 1, i - 4);
+            }
 
             Tile t = new Tile(-1,-1);
             t.setFeline(kitten);
@@ -77,10 +90,19 @@ public class MainScreenController {
 
             ImageView iv = cat.getIV();
             pane.getChildren().add(iv);
-            if(playernum == 1)
-                player1GridPane.add(pane, 0, i + player.getPool().getNumberOfKittensAvailable());
-            else
-                player2GridPane.add(pane, 0, i + player.getPool().getNumberOfKittensAvailable());
+
+            if(i < 4) {
+                if (playernum == 1)
+                    player1GridPane.add(pane, 0, i);
+                else
+                    player2GridPane.add(pane, 0, i);
+            }
+            else {
+                if (playernum == 1)
+                    player1GridPane.add(pane, 1, i - 4);
+                else
+                    player2GridPane.add(pane, 1, i - 4);
+            }
 
             Tile t = new Tile(-1,-1);
             t.setFeline(cat);
@@ -89,15 +111,58 @@ public class MainScreenController {
         }
     }
 
+    private void changePlayerTurnLabel() {
+        playerTurnLabel.setText("Player " + game.getPlayerTurn() + "'s turn");
+    }
+
+    //Gets information on what the current bed looks like
+    //creates references to the panes
+    private void drawGrid() {
+        gridPane.getChildren().clear();
+
+        for (int row = 0; row < game.getBed().getRows(); row++) {
+            for (int col = 0; col < game.getBed().getCols(); col++) {
+                //get current tile from bed
+                Tile tile = game.getBed().getTile(row, col);
+
+                //create pane
+                Pane pane = new Pane();
+                pane.setPrefSize(100, 100);
+                pane.getStyleClass().add("tile");
+
+                setUpDragFromBedEvents(pane, tile, row, col);
+
+                //set up mouse click events
+                int r = row; int c = col;
+                pane.setOnMouseClicked(e -> handleTileClick(pane));
+
+                //display image from tile
+                if (!tile.isEmpty()) {
+                    Feline feline = tile.getFeline();
+                    ImageView iv = feline.getIV();
+                    pane.getChildren().add(iv);
+                    iv.setLayoutX(10);
+                    iv.setLayoutY(10);
+
+                    setUpDragStartEvent(pane, tile, false);
+                }
+                gridPane.add(pane, col, row);
+            }
+        }
+    }
     private void setUpDragStartEvent(Pane pane, Tile tile, boolean fromPool){
         if(game.getCurrentPlayer().getNum() == tile.getFeline().getPlayer()){
 
-            pane.setOnMouseEntered(event -> pane.setCursor(Cursor.MOVE));
+            pane.setOnMouseEntered(event -> pane.setCursor(Cursor.OPEN_HAND));
+            pane.setOnMousePressed(event -> pane.setCursor(Cursor.CLOSED_HAND));
             pane.setOnMouseExited(event -> pane.setCursor(Cursor.DEFAULT));
 
             pane.setOnDragDetected(event -> {
+                //save current tile information in dragContext
                 DragContext.draggedObject = tile;
                 DragContext.fromPool = fromPool;
+
+                //start the drag
                 Dragboard db = pane.startDragAndDrop(TransferMode.MOVE);
 
                 //remove feline from pool
@@ -121,6 +186,12 @@ public class MainScreenController {
                 content.putString("feline");
                 db.setContent(content);
 
+                // Optional: Show visual feedback during drag
+                SnapshotParameters snapParams = new SnapshotParameters();
+                snapParams.setFill(Color.TRANSPARENT);
+                WritableImage snapshot = pane.getChildren().getFirst().snapshot(snapParams, null);
+                db.setDragView(snapshot, snapshot.getWidth() / 2, snapshot.getHeight() / 2);
+
                 event.consume();
             });
         }
@@ -129,45 +200,7 @@ public class MainScreenController {
         }
     }
 
-    private void changePlayerTurnLabel() {
-        playerTurnLabel.setText("Player " + game.getPlayerTurn() + "'s turn");
-    }
-
-    //Gets information on what the current bed looks like
-    //creates references to the panes
-    private void drawGrid() {
-        gridPane.getChildren().clear();
-
-        for (int row = 0; row < game.getBed().getRows(); row++) {
-            for (int col = 0; col < game.getBed().getCols(); col++) {
-                //get current tile from bed
-                Tile tile = game.getBed().getTile(row, col);
-
-                //create pane
-                Pane pane = new Pane();
-                pane.setPrefSize(100, 100);
-                pane.getStyleClass().add("tile");
-
-                setUpDragEvents(pane, tile, row, col);
-
-                //set up mouse click events
-                int r = row; int c = col;
-                pane.setOnMouseClicked(e -> handleTileClick(r, c));
-
-                //display image from tile
-                if (!tile.isEmpty()) {
-                    Feline feline = tile.getFeline();
-                    ImageView iv = feline.getIV();
-                    pane.getChildren().add(iv);
-
-                    setUpDragStartEvent(pane, tile, false);
-                }
-                gridPane.add(pane, col, row);
-            }
-        }
-    }
-
-    private void setUpDragEvents(Pane pane,Tile tile, int row, int col) {
+    private void setUpDragFromBedEvents(Pane pane,Tile tile, int row, int col) {
         int r = row; int c = col;
 
         pane.setOnDragOver(event -> {
@@ -262,8 +295,9 @@ public class MainScreenController {
                 event.consume();
             }
         });
-    }
 
+        pane.setOnMouseDragged(event -> pane.setCursor(Cursor.CLOSED_HAND));
+    }
 
     private void upgradeKittensToCats(ArrayList<Feline> kittensInARow) {
         int player = kittensInARow.getFirst().getPlayer();
@@ -286,12 +320,8 @@ public class MainScreenController {
         drawPlayerPools();
     }
 
+    private void handleTileClick(Pane pane) {
 
-    private void handleTileClick(int r, int c) {
-        Tile tile = game.getBed().getTile(r, c);
-        if (!tile.isEmpty()) {
-            //game.getBed().getOpenSquares();
-        }
     }
 
 }
