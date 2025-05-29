@@ -6,9 +6,46 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+            fx:controller="com.example.boop.MainScreenController"
+            prefHeight="800.0" prefWidth="1200.0"
+            stylesheets = "@styles.css">
+    <top>
+        <HBox alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label fx:id="playerTurnLabel" text = "Player 1's turn" styleClass="player-turn-label"/>
+        </HBox>
+    </top>
+    <center>
+        <StackPane>
 
-</AnchorPane>
+            <GridPane alignment = "CENTER" fx:id = "gridPane"/>
+
+            <VBox alignment="CENTER" visible = "false" fx:id = "winVBox">
+
+                <Label fx:id = "winLabel"  styleClass="player-win-label" text = "Player 1 wins"/>
+                <HBox alignment="CENTER">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                    <Button fx:id = "homeButton" text = "Home" styleClass="options-button" ></Button>
+                </HBox>
+            </VBox>
+
+
+        </StackPane>
+
+    </center>
+
+    <left>
+        <GridPane alignment = "CENTER" fx:id = "player1GridPane"></GridPane>
+    </left>
+    <right>
+        <GridPane alignment = "CENTER" fx:id = "player2GridPane"></GridPane>
+    </right>
+
+</BorderPane>
