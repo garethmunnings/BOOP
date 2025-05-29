@@ -22,38 +22,37 @@
     </top>
     <center>
         <StackPane>
-
             <GridPane alignment = "CENTER" fx:id = "gridPane"/>
 
             <VBox alignment="CENTER" visible = "false" fx:id = "winVBox">
-
                 <Label fx:id = "winLabel"  styleClass="player-win-label" text = "Player 1 wins"/>
+
                 <HBox alignment="CENTER">
                     <padding>
                         <Insets top="20" right="20" bottom="20" left="20"/>
                     </padding>
-                    <Button fx:id = "homeButton" text = "Home" styleClass="options-button" ></Button>
+                    <Button fx:id = "homeButton" text = "Home" styleClass="options-button"/>
                 </HBox>
             </VBox>
-
-
         </StackPane>
-
     </center>
 
     <left>
-        <GridPane alignment = "CENTER" fx:id = "player1GridPane">
+        <Pane prefWidth="150">
             <BorderPane.margin>
-                <Insets top="20" right="20" bottom="20" left="20" />
+                <Insets top="100" right="0" bottom="20" left="20" />
             </BorderPane.margin>
-        </GridPane>
+            <GridPane alignment = "TOP_RIGHT" fx:id = "player1GridPane"/>
+        </Pane>
     </left>
+
     <right>
-        <GridPane alignment = "CENTER" fx:id = "player2GridPane">
+        <Pane prefWidth="150">
             <BorderPane.margin>
-                <Insets top="20" right="20" bottom="20" left="20" />
+                <Insets top="100" right="70" bottom="20" left="0" />
             </BorderPane.margin>
-        </GridPane>
+            <GridPane alignment = "TOP_LEFT" fx:id = "player2GridPane"/>
+        </Pane>
     </right>
 
 </BorderPane>

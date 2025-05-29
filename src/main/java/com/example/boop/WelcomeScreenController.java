@@ -17,6 +17,8 @@ public class WelcomeScreenController {
         Parent newRoot = FXMLLoader.load(getClass().getResource("/com/example/boop/MainScreen.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(newRoot));
+        stage.setTitle("BOOP");
+        stage.setResizable(false);
         stage.show();
     }
 }

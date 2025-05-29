@@ -23,7 +23,6 @@ public class Bed {
 
     public int getRows() { return rows; }
     public int getCols() { return cols; }
-    public Tile[][] getGrid() { return grid; }
 
     public ArrayList<Feline> updateTile(int row, int col, Tile tile, boolean chainReaction) {
         grid[row][col] = tile;
@@ -600,18 +599,6 @@ public class Bed {
         return false;
     }
 
-//    public void display() {
-//        for (int i = 0; i < rows; i++){
-//            for (int j = 0; j < cols; j++){
-//                if(grid[i][j].getFeline() instanceof Feline)
-//                    System.out.print("c ");
-//                else
-//                    System.out.print("x ");
-//            }
-//            System.out.println();
-//        }
-//        System.out.println();
-//    }
 
     public Tile getTileWithFeline(Feline feline) {
         for(int row = 0; row < rows ; row++) {

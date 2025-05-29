@@ -18,6 +18,7 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
         stage.setTitle("BOOP");
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
     }
     public static void main(String[] args) {

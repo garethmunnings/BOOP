@@ -207,7 +207,6 @@ public class MainScreenController {
             if (event.getGestureSource() != pane && event.getDragboard().hasString()) {
                 event.acceptTransferModes(TransferMode.MOVE);
             }
-
             event.consume();
         });
 
