@@ -10,7 +10,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.boop.MainScreenController"
-            prefHeight="800.0" prefWidth="1200.0"
+            prefHeight="768.0" prefWidth="1200.0"
             stylesheets = "@styles.css">
     <top>
         <HBox alignment="CENTER">

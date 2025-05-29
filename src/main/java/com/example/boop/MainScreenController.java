@@ -266,7 +266,7 @@ public class MainScreenController {
                     success = true;
                     if (game.getBed().threeCatsInARow()) {
                         winVBox.setVisible(true);
-                        winLabel.setText("Player " + game.getPlayerTurn() + "wins");
+                        winLabel.setText("Player " + game.getPlayerTurn() + " wins!");
                         homeButton.setOnAction((actionEvent -> {
                             Main main = new Main();
                             try {
