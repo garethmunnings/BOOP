@@ -80,7 +80,7 @@ Each player starts with:
 
 ---
 ## Acknowledgements
-- Game design inspired by boop.
+- Game design inspired by [BOOP](https://www.smirkanddagger.com/product-page/boop)
 - Original game design: Scott Brady
 - Original illustrations: Curt Covert
 
