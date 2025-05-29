@@ -79,6 +79,10 @@ Each player starts with:
 - Place Cats strategically: they’re immune to Kitten boops.
 
 ---
+## Acknowledgements
+- Game design inspired by boop.
+- Original game design: Scott Brady
+- Original illustrations: Curt Covert
 
 ## 🛠️ Tech Stack
 
