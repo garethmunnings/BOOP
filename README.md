@@ -99,7 +99,7 @@ Each player starts with:
 - Java 21 or newer
 - Maven installed
 
-### 🧪 Run Instructions (If this doesn't work let me know I don't know what I'm doing)
+### 🧪 Run Instructions (If this doesn't work let me know, I don't know what I'm doing)
 
 ```bash
 git clone https://github.com/garethmunnings/BOOP.git
