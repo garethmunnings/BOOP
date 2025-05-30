@@ -65,7 +65,8 @@ public class Bed {
 
                         if (grid[row + 2][col].getFeline() != null) { //is there a feline two spaces ahead
                             //do nothing
-                        } else {
+                        } else { //BOOP happens
+
                             Tile t = new Tile(row + 2, col);
                             t.setFeline(feline);
                             updateTile(row + 2, col, t, true);
@@ -547,6 +548,7 @@ public class Bed {
                 }
             }
         }
+
         return null;
     }
 

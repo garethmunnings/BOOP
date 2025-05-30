@@ -16,6 +16,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.Clip;
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainScreenController {
@@ -262,9 +264,9 @@ public class MainScreenController {
                     drawPlayerPools();
                     pane.getChildren().add(tile.getFeline().getIV());
 
-
                     success = true;
                     if (game.getBed().threeCatsInARow()) {
+                        SoundPlayer.playSound("WinSound.wav");
                         winVBox.setVisible(true);
                         winLabel.setText("Player " + game.getPlayerTurn() + " wins!");
                         homeButton.setOnAction((actionEvent -> {
@@ -275,13 +277,13 @@ public class MainScreenController {
                                 Stage stage = (Stage) homeButton.getScene().getWindow();
                                 stage.close();
                             } catch (Exception e) {
-
                             }
                         }));
                     }
                     game.endTurn();
 
                     if (game.getBed().threeKittensInARow() != null) {
+
                         upgradeKittensToCats(game.getBed().threeKittensInARow());
                     }
 
@@ -293,12 +295,14 @@ public class MainScreenController {
                 event.setDropCompleted(success);
                 event.consume();
             }
+            SoundPlayer.playSound("PlaceSound.wav");
         });
 
         pane.setOnMouseDragged(event -> pane.setCursor(Cursor.CLOSED_HAND));
     }
 
     private void upgradeKittensToCats(ArrayList<Feline> kittensInARow) {
+        SoundPlayer.playSound("UpgradeSound.wav");
         int player = kittensInARow.getFirst().getPlayer();
         if(player == 1)
             for(Feline f : kittensInARow){

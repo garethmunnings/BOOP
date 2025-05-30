@@ -14,6 +14,7 @@ public class WelcomeScreenController {
 
     @FXML
     private void handlePlay(ActionEvent event) throws IOException {
+        SoundPlayer.playSound("StartSound.wav");
         Parent newRoot = FXMLLoader.load(getClass().getResource("/com/example/boop/MainScreen.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(newRoot));
