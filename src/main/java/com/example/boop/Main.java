@@ -6,11 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-//TODO sound design
 //TODO animate movement
 //TODO option to select which three kittens to turn into cats
 //TODO win condition where all 8 cats are on the board
-//TODO make feline images look better
 
 public class Main extends Application {
     @Override
