@@ -1,7 +1,9 @@
 # 🐱 BOOP – A JavaFX Implementation of the Cat-Pushing Strategy Game
 
 **BOOP** is a two-player abstract strategy game brought to life with JavaFX. Place kittens on a cozy quilted bed and watch as they *boop* adjacent pieces around! Graduate kittens to cats and aim to line up three of your feline friends to win. Simple to learn, yet delightfully chaotic to master.
-
+---
+## ❗Disclaimer 
+- This README was vibe-coded, but the game was not.
 ---
 ##  ❗Current state
 - This Project is a work in progress and will hopefully be done soon. Not all of the game rules work the way they're supposed to and not all of the UI looks the way it is supposed to. I'll be updating this over the next few weeks.
