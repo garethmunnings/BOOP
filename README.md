@@ -108,3 +108,7 @@ Each player starts with:
 git clone https://github.com/garethmunnings/BOOP.git
 cd BOOP
 mvn clean javafx:run
+
+OR
+
+There is a runnable jar file in out/artifacts
