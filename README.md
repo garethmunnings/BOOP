@@ -104,13 +104,13 @@ Each player starts with:
 - Java 21 or newer
 - Maven installed
 
-### 🧪 Run Instructions (If this doesn't work let me know, I don't know what I'm doing)
+### 🧪 Run Instructions
 
 ```bash
 git clone https://github.com/garethmunnings/BOOP.git
 cd BOOP
 mvn clean javafx:run
-
+```
 OR
 
 There is a runnable jar file in out/artifacts
